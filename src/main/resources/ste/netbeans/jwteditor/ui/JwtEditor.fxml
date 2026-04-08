@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ste.netbeans.jwteditor.ui.JwtEditorController">
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox spacing="10" VBox.vgrow="ALWAYS">
+                <!-- Left Column: Encoded Token -->
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Encoded Token" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                    <TextArea fx:id="encodedTokenArea" 
+                              wrapText="true" 
+                              VBox.vgrow="ALWAYS"
+                              style="-fx-font-family: 'Courier New'; -fx-font-size: 10;"/>
+                </VBox>
+
+                <!-- Right Column: Decoded Content -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <!-- Decoded Header with JSON syntax highlighting -->
+                    <VBox spacing="5" VBox.vgrow="ALWAYS">
+                        <Label text="Decoded Header" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <StackPane fx:id="headerContainer" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+
+                    <!-- Decoded Payload -->
+                    <VBox spacing="5" VBox.vgrow="ALWAYS">
+                        <Label text="Decoded Payload" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <TableView fx:id="payloadTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="propertyColumn" text="Property" prefWidth="150.0"/>
+                                <TableColumn fx:id="valueColumn" text="Value" prefWidth="250.0"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+
+                    <!-- Secret Key & Verification -->
+                    <VBox spacing="5">
+                        <Label text="JWT Signature Verification" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <PasswordField fx:id="secretField" 
+                                       promptText="Enter secret key (min 32 bytes)"
+                                       style="-fx-font-family: 'Courier New'; -fx-font-size: 10;"/>
+                        <Label fx:id="secretValidationLabel" 
+                               text="Secret requirement: At least 32 bytes"
+                               style="-fx-text-fill: #888888; -fx-font-size: 9;"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Status Bar at Bottom -->
+            <HBox spacing="10" style="-fx-border-color: #cccccc; -fx-border-width: 1 0 0 0; -fx-padding: 8 0 0 0;">
+                <Label fx:id="jwtStatusLabel" 
+                       text="Status: Ready" 
+                       style="-fx-font-size: 10;"/>
+                <Label fx:id="signatureStatusLabel" 
+                       text="Signature: -" 
+                       style="-fx-font-size: 10;"/>
+                <Label fx:id="errorLabel" 
+                       text="" 
+                       style="-fx-text-fill: #d32f2f; -fx-font-size: 10;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Stefano Fornari
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.txt
+OpenIDE-Module-Localizing-Bundle: ste/netbeans/jwteditor/Bundle.properties
