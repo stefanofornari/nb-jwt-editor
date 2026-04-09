@@ -63,7 +63,7 @@ public class JwtEditorTopComponent extends TopComponent {
             // Load FXML on JavaFX thread
             javafx.application.Platform.runLater(() -> {
                 try {
-                    ResourceBundle bundle = NbBundle.getBundle("io.github.jeddict.ai.settings.Bundle");
+                    ResourceBundle bundle = NbBundle.getBundle(JwtEditorTopComponent.class);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("JwtEditor.fxml"), bundle);
                     Parent root = loader.load();
                     JwtEditorController fxController = loader.getController();
