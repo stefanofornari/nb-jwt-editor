@@ -20,8 +20,8 @@ import org.openide.util.NbBundle;
         iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
 )
 @TopComponent.Registration(mode = "output", openAtStartup = false)
-@ActionID(category = "Window", id = JwtEditorTopComponent.PREFERRED_ID)
-@ActionReference(path = "Menu/Window", position = 5100)
+@ActionID(category = "Tools", id = JwtEditorTopComponent.PREFERRED_ID)
+@ActionReference(path = "Menu/Tools", position = 5100)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_JwtEditorAction",
         preferredID = JwtEditorTopComponent.PREFERRED_ID

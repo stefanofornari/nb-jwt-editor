@@ -6,9 +6,9 @@ import org.openide.awt.ActionReferences;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
-@ActionID(category = "Window", id = "ste.netbeans.jwteditor.ShowJwtEditorAction")
+@ActionID(category = "Tools", id = "ste.netbeans.jwteditor.ShowJwtEditorAction")
 @ActionReferences({
-    @ActionReference(path = "Menu/Window", position = 1450)
+    @ActionReference(path = "Menu/Tools", position = 1450)
 })
 
 
