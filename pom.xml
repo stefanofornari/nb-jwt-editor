@@ -4,7 +4,7 @@
 
     <groupId>com.github.stefanofornari</groupId>
     <artifactId>nb-jwt-editor</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.0-SNAPSHOT</version>
     <packaging>nbm</packaging>
 
     <name>JWT Editor</name>
@@ -21,10 +21,7 @@
 
     <developers>
         <developer>
-            <id>stefanofornari</id>
             <name>Stefano Fornari</name>
-            <email>stefano.fornari@gmail.com</email>
-            <url>https://github.com/stefanofornari</url>
         </developer>
     </developers>
 
@@ -151,6 +148,13 @@
             <version>5.12.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>21.0.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -191,7 +195,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.4</version>
+                <version>3.5.5</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <testfx.robot>glass</testfx.robot>
+                        <testfx.headless>true</testfx.headless>
+                        <glass.platform>Monocle</glass.platform>
+                        <monocle.platform>Headless</monocle.platform>
+                        <prism.order>sw</prism.order> <!-- Software rendering for headless -->
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -295,8 +308,8 @@
     <scm>
         <connection>scm:git:git@github.com:stefanofornari/nb-jwt-editor.git</connection>
         <url>https://github.com/stefanofornari/nb-jwt-editor/tree/main</url>
-      <tag>nb-jwt-editor-0.0.0</tag>
-  </scm>
+        <tag>nb-jwt-editor-0.0.0</tag>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>
