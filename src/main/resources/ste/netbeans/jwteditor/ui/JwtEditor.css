@@ -1,0 +1,18 @@
+.root {
+    -fx-font-size: 10px;
+}
+
+.caption {
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+}
+
+.code {
+    -fx-font-family: 'Courier New';
+}
+
+#statusBar {
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 8 0 0 0;
+}

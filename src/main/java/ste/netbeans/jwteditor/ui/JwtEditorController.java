@@ -77,14 +77,14 @@ public class JwtEditorController {
 
         if (!decodeResult.valid) {
             clearDisplay();
-            errorLabel.setText("JWT Error: " + decodeResult.error);
-            jwtStatusLabel.setText("Status: Invalid JWT");
+            errorLabel.setText(" > " + decodeResult.error);
+            jwtStatusLabel.setText("JWT: Invalid");
             jwtStatusLabel.setStyle("-fx-text-fill: #d32f2f;");
             return;
         }
 
         errorLabel.setText("");
-        jwtStatusLabel.setText("Status: Valid JWT");
+        jwtStatusLabel.setText("JWT: Valid");
         jwtStatusLabel.setStyle("-fx-text-fill: #388e3c;");
 
         // Display combined header and payload in TreeTableView
@@ -124,12 +124,12 @@ public class JwtEditorController {
         if (!secret.isEmpty()) {
             JwtVerificationService.VerificationResult verifyResult = verificationService.verify(token, secret);
             if (verifyResult.valid) {
-                signatureStatusLabel.setText("Signature: Valid ✓");
+                signatureStatusLabel.setText("Signature: Valid");
                 signatureStatusLabel.setStyle("-fx-text-fill: #388e3c;");
             } else {
-                signatureStatusLabel.setText("Signature: Invalid ✗");
+                signatureStatusLabel.setText("Signature: Invalid");
                 signatureStatusLabel.setStyle("-fx-text-fill: #d32f2f;");
-                errorLabel.setText(verifyResult.message);
+                errorLabel.setText(" > " + verifyResult.message);
             }
         } else {
             signatureStatusLabel.setText("Signature: -");
@@ -141,8 +141,8 @@ public class JwtEditorController {
         payloadTable.setRoot(null);
         secretValidationLabel.setText("Secret is required for signature verification");
         secretValidationLabel.setStyle("-fx-text-fill: #888888;");
-        jwtStatusLabel.setText("Status: Ready");
-        jwtStatusLabel.setStyle("-fx-text-fill: #666666;");
+        jwtStatusLabel.setText("JWT: -");
+        jwtStatusLabel.setStyle("-fx-text-fill: #888888;");
         signatureStatusLabel.setText("Signature: -");
         signatureStatusLabel.setStyle("-fx-text-fill: #888888;");
         errorLabel.setText("");

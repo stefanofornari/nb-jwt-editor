@@ -12,17 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ste.netbeans.jwteditor.ui.JwtEditorController">
+            fx:controller="ste.netbeans.jwteditor.ui.JwtEditorController"
+            stylesheets="@JwtEditor.css"
+>
     <center>
         <VBox spacing="10" style="-fx-padding: 10;">
             <HBox spacing="10" VBox.vgrow="ALWAYS">
                 <!-- Left Column: Encoded Token -->
                 <VBox spacing="5" HBox.hgrow="ALWAYS">
-                    <Label text="Encoded Token" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-                    <TextArea fx:id="encodedTokenArea" 
-                              wrapText="true" 
+                    <Label text="Encoded Token" styleClass="caption"/>
+                    <TextArea fx:id="encodedTokenArea"
+                              wrapText="true"
                               VBox.vgrow="ALWAYS"
-                              style="-fx-font-family: 'Courier New'; -fx-font-size: 10;"/>
+                              styleClass="code"/>
                 </VBox>
 
                 <!-- Right Column: Decoded Content -->
@@ -30,7 +32,7 @@
                     <!-- Decoded Token (Header + Payload) -->
                     <VBox spacing="5" VBox.vgrow="ALWAYS">
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="Decoded Token" style="-fx-font-weight: bold; -fx-font-size: 12;" HBox.hgrow="ALWAYS"/>
+                            <Label text="Decoded Token" styleClass="caption" HBox.hgrow="ALWAYS"/>
                         </HBox>
                         <TreeTableView fx:id="payloadTable" VBox.vgrow="ALWAYS">
                             <columns>
@@ -42,28 +44,26 @@
 
                     <!-- Secret Key & Verification -->
                     <VBox spacing="5">
-                        <Label text="JWT Signature Verification" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-                        <PasswordField fx:id="secretField" 
+                        <Label text="Signature Verification" styleClass="caption"/>
+                        <PasswordField fx:id="secretField"
                                        promptText="Enter secret key"
-                                       style="-fx-font-family: 'Courier New'; -fx-font-size: 10;"/>
-                        <Label fx:id="secretValidationLabel" 
+                                       styleClass="code"/>
+                        <Label fx:id="secretValidationLabel"
                                text="Secret is required for signature verification"
-                               style="-fx-text-fill: #888888; -fx-font-size: 9;"/>
+                               style="-fx-text-fill: #888888;"/>
                     </VBox>
                 </VBox>
             </HBox>
 
             <!-- Status Bar at Bottom -->
-            <HBox spacing="10" style="-fx-border-color: #cccccc; -fx-border-width: 1 0 0 0; -fx-padding: 8 0 0 0;">
-                <Label fx:id="jwtStatusLabel" 
-                       text="Status: Ready" 
-                       style="-fx-font-size: 10;"/>
-                <Label fx:id="signatureStatusLabel" 
-                       text="Signature: -" 
-                       style="-fx-font-size: 10;"/>
-                <Label fx:id="errorLabel" 
-                       text="" 
-                       style="-fx-text-fill: #d32f2f; -fx-font-size: 10;"/>
+            <HBox spacing="10" fx:id="statusBar">
+                <Label fx:id="jwtStatusLabel"
+                       text="Status: -"/>
+                <Label fx:id="signatureStatusLabel"
+                       text="Signature: -"/>
+                <Label fx:id="errorLabel"
+                       text=" > "
+                       style="-fx-text-fill: #d32f2f;"/>
             </HBox>
         </VBox>
     </center>
