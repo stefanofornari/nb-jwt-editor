@@ -95,10 +95,24 @@
             <artifactId>org-openide-util-lookup</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
+        <!-- JavaFX (provided by NetBeans at runtime) -->
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-libs-javafx</artifactId>
-            <version>${netbeans.version}</version>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>21.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <!-- JWT -->
         <dependency>
@@ -146,24 +160,6 @@
             <version>5.12.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>21.0.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-swing</artifactId>
-            <version>21.0.2</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -195,6 +191,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <codeNameBase>ste.netbeans.jwteditor</codeNameBase>
+                    <cluster>Tools</cluster>
+                    <moduleType>normal</moduleType>
                     <publicPackages>
                         <publicPackage>ste.netbeans.jwteditor</publicPackage>
                     </publicPackages>
