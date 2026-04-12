@@ -95,24 +95,22 @@
             <artifactId>org-openide-util-lookup</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
+
         <!-- JavaFX (provided by NetBeans at runtime) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>21.0.2</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
             <version>21.0.2</version>
-            <scope>provided</scope>
         </dependency>
         <!-- JWT -->
         <dependency>
@@ -140,12 +138,6 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.27.7</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-core</artifactId>
-            <version>4.0.18</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -196,13 +188,11 @@
                 <version>14.4</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <codeNameBase>ste.netbeans.jwteditor</codeNameBase>
-                    <cluster>Tools</cluster>
-                    <moduleType>normal</moduleType>
-                    <publicPackages>
-                        <publicPackage>ste.netbeans.jwteditor</publicPackage>
-                    </publicPackages>
+                    <author>Stefano Fornari</author>
+                    <licenseFile>LICENSE</licenseFile>
+                    <licenseName>Apache-2.0</licenseName>
                     <useOSGiDependencies>false</useOSGiDependencies>
+                    <verifyRuntime>false</verifyRuntime>
                 </configuration>
             </plugin>
             <plugin>

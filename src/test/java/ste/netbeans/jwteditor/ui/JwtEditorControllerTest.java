@@ -93,6 +93,47 @@ public class JwtEditorControllerTest {
     }
 
     @Test
+    @DisplayName("show_valid_signature_status_for_correct_secret")
+    public void show_valid_signature_status_for_correct_secret() throws Exception {
+        String secret = "secret";
+        String token = com.auth0.jwt.JWT.create()
+                .withSubject("1234567890")
+                .sign(com.auth0.jwt.algorithms.Algorithm.HMAC256(secret));
+
+        TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
+        javafx.scene.control.PasswordField secretField = robot.lookup("#secretField").queryAs(javafx.scene.control.PasswordField.class);
+
+        robot.clickOn(encodedTokenArea).write(token);
+        robot.clickOn(secretField).write(secret);
+        
+        // Wait for debounce delay
+        WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.signatureStatusLabel.getText().contains("Valid"));
+
+        then(controller.signatureStatusLabel.getText()).contains("Signature: Valid ✓");
+    }
+
+    @Test
+    @DisplayName("show_invalid_signature_status_for_incorrect_secret")
+    public void show_invalid_signature_status_for_incorrect_secret() throws Exception {
+        String secret1 = "secret1";
+        String secret2 = "secret2";
+        String token = com.auth0.jwt.JWT.create()
+                .withSubject("1234567890")
+                .sign(com.auth0.jwt.algorithms.Algorithm.HMAC256(secret1));
+
+        TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
+        javafx.scene.control.PasswordField secretField = robot.lookup("#secretField").queryAs(javafx.scene.control.PasswordField.class);
+
+        robot.clickOn(encodedTokenArea).write(token);
+        robot.clickOn(secretField).write(secret2);
+        
+        // Wait for debounce delay
+        WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.signatureStatusLabel.getText().contains("Invalid"));
+
+        then(controller.signatureStatusLabel.getText()).contains("Signature: Invalid ✗");
+    }
+
+    @Test
     @DisplayName("show_invalid_status_for_malformed_token")
     public void show_invalid_status_for_malformed_token() throws Exception {
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);

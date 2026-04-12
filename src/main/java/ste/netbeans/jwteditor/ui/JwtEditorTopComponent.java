@@ -7,9 +7,9 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import org.openide.windows.TopComponent;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.windows.TopComponent;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 
@@ -21,7 +21,7 @@ import org.openide.util.NbBundle;
 )
 @TopComponent.Registration(mode = "output", openAtStartup = false)
 @ActionID(category = "Tools", id = JwtEditorTopComponent.PREFERRED_ID)
-@ActionReference(path = "Menu/Tools", position = 5100)
+@ActionReference(path = "Menu/Tools", position = 900)
 @TopComponent.OpenActionRegistration(
         displayName = "#CTL_JwtEditorAction",
         preferredID = JwtEditorTopComponent.PREFERRED_ID
