@@ -32,8 +32,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://git@github.com:stefanofornari/nb-jwt-editor.git</connection>
-        <url>https://github.com/stefanofornari/nb-jwt-editor</url>
+        <connection>scm:git:git://github.com/stefanofornari/nb-jwt-editor.git</connection>
+        <developerConnection>scm:git:ssh://github.com:stefanofornari/nb-jwt-editor.git</developerConnection>
+        <url>https://github.com/stefanofornari/nb-jwt-editor/tree/main</url>
     </scm>
 
     <properties>
@@ -41,6 +42,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <netbeans.version>RELEASE290</netbeans.version>
+        <javafx.version>21.0.2</javafx.version>
     </properties>
 
     <dependencies>
@@ -95,23 +97,23 @@
             <artifactId>org-openide-util-lookup</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
-
-        <!-- JavaFX (provided by NetBeans at runtime) -->
+        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
+
         <!-- JWT -->
         <dependency>
             <groupId>com.auth0</groupId>
@@ -142,14 +144,14 @@
         </dependency>
         <dependency>
             <groupId>org.testfx</groupId>
-            <artifactId>testfx-junit5</artifactId>
+            <artifactId>testfx-core</artifactId>
             <version>4.0.18</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testfx</groupId>
-            <artifactId>openjfx-monocle</artifactId>
-            <version>21.0.2</version>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -188,26 +190,17 @@
                 <version>14.4</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <author>Stefano Fornari</author>
-                    <licenseFile>LICENSE</licenseFile>
-                    <licenseName>Apache-2.0</licenseName>
+                    <codeNameBase>ste.netbeans.jwteditor</codeNameBase>
+                    <publicPackages>
+                        <publicPackage>ste.netbeans.jwteditor</publicPackage>
+                    </publicPackages>
                     <useOSGiDependencies>false</useOSGiDependencies>
-                    <verifyRuntime>false</verifyRuntime>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.4</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <testfx.robot>glass</testfx.robot>
-                        <testfx.headless>true</testfx.headless>
-                        <glass.platform>Monocle</glass.platform>
-                        <monocle.platform>Headless</monocle.platform>
-                        <prism.order>sw</prism.order>
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
