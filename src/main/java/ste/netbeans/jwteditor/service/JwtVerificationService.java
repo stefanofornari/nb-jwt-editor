@@ -3,7 +3,6 @@ package ste.netbeans.jwteditor.service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.nio.charset.StandardCharsets;
 
@@ -21,14 +20,8 @@ public class JwtVerificationService {
         }
     }
 
-    private static final int MIN_SECRET_BYTES = 32;
-
     public boolean isSecretValid(String secret) {
-        if (secret == null || secret.isEmpty()) {
-            return false;
-        }
-        byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
-        return secretBytes.length >= MIN_SECRET_BYTES;
+        return secret != null && !secret.isEmpty();
     }
 
     public VerificationResult verify(String token, String secret) {
@@ -38,11 +31,6 @@ public class JwtVerificationService {
 
         if (secret == null || secret.isEmpty()) {
             return new VerificationResult(false, "Secret is required", false);
-        }
-
-        byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
-        if (secretBytes.length < MIN_SECRET_BYTES) {
-            return new VerificationResult(false, "Secret must be at least " + MIN_SECRET_BYTES + " bytes", false);
         }
 
         try {

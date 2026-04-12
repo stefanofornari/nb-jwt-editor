@@ -31,7 +31,6 @@
                     <VBox spacing="5" VBox.vgrow="ALWAYS">
                         <HBox spacing="10" alignment="CENTER_LEFT">
                             <Label text="Decoded Token" style="-fx-font-weight: bold; -fx-font-size: 12;" HBox.hgrow="ALWAYS"/>
-                            <javafx.scene.control.Button fx:id="decodeButton" text="Decode" onAction="#handleDecodeAction"/>
                         </HBox>
                         <TreeTableView fx:id="payloadTable" VBox.vgrow="ALWAYS">
                             <columns>
@@ -45,10 +44,10 @@
                     <VBox spacing="5">
                         <Label text="JWT Signature Verification" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
                         <PasswordField fx:id="secretField" 
-                                       promptText="Enter secret key (min 32 bytes)"
+                                       promptText="Enter secret key"
                                        style="-fx-font-family: 'Courier New'; -fx-font-size: 10;"/>
                         <Label fx:id="secretValidationLabel" 
-                               text="Secret requirement: At least 32 bytes"
+                               text="Secret is required for signature verification"
                                style="-fx-text-fill: #888888; -fx-font-size: 9;"/>
                     </VBox>
                 </VBox>

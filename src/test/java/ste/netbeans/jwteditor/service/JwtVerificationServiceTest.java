@@ -16,7 +16,7 @@ public class JwtVerificationServiceTest {
     @Test
     @DisplayName("verify_valid_jwt_with_correct_secret")
     public void verify_valid_jwt_with_correct_secret() {
-        String secret = "this_is_a_secret_that_is_longer_than_32_bytes_for_testing";
+        String secret = "short_secret";
         String token = JWT.create()
                 .withSubject("test")
                 .sign(Algorithm.HMAC256(secret));
@@ -30,8 +30,8 @@ public class JwtVerificationServiceTest {
     @Test
     @DisplayName("reject_jwt_with_wrong_secret")
     public void reject_jwt_with_wrong_secret() {
-        String secret1 = "this_is_a_secret_that_is_longer_than_32_bytes_first_secret";
-        String secret2 = "this_is_a_secret_that_is_longer_than_32_bytes_second_secret";
+        String secret1 = "secret1";
+        String secret2 = "secret2";
         String token = JWT.create()
                 .withSubject("test")
                 .sign(Algorithm.HMAC256(secret1));
@@ -43,27 +43,23 @@ public class JwtVerificationServiceTest {
     }
 
     @Test
-    @DisplayName("reject_secret_shorter_than_32_bytes")
-    public void reject_secret_shorter_than_32_bytes() {
-        String shortSecret = "short";
-
-        then(service.isSecretValid(shortSecret)).isFalse();
+    @DisplayName("accept_any_non_empty_secret")
+    public void accept_any_non_empty_secret() {
+        then(service.isSecretValid("a")).isTrue();
+        then(service.isSecretValid("longer_secret")).isTrue();
     }
 
     @Test
-    @DisplayName("accept_secret_with_32_or_more_bytes")
-    public void accept_secret_with_32_or_more_bytes() {
-        String secret32 = "a".repeat(32);
-        String secret64 = "a".repeat(64);
-
-        then(service.isSecretValid(secret32)).isTrue();
-        then(service.isSecretValid(secret64)).isTrue();
+    @DisplayName("reject_empty_secret")
+    public void reject_empty_secret() {
+        then(service.isSecretValid("")).isFalse();
+        then(service.isSecretValid(null)).isFalse();
     }
 
     @Test
     @DisplayName("return_error_for_empty_token")
     public void return_error_for_empty_token() {
-        String secret = "a".repeat(32);
+        String secret = "secret";
 
         JwtVerificationService.VerificationResult result = service.verify("", secret);
 

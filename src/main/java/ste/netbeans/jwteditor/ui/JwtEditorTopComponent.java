@@ -28,13 +28,13 @@ import org.openide.util.NbBundle;
 )
 @NbBundle.Messages({
     "CTL_JwtEditorAction=JWT Editor",
-    "CTL_JwtEditorTopComponent=JWT Editor Window",
-    "HINT_JwtEditorTopComponent=JWT Editor Window"
+    "CTL_JwtEditorTopComponent=JWT Editor",
+    "HINT_JwtEditorTopComponent=JWT Editor"
 })
 public class JwtEditorTopComponent extends TopComponent {
     public static final String PREFERRED_ID = "ste-netbeans-jwteditor-JWTEditorTopComponent";
-    
-    
+
+
     final private Logger LOG = Logger.getLogger(getClass().getName());
 
     public JwtEditorTopComponent() {

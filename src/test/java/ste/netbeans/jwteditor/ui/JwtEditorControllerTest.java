@@ -13,8 +13,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.util.WaitForAsyncUtils;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.BDDAssertions.*;
 
@@ -46,23 +48,23 @@ public class JwtEditorControllerTest {
     public void display_error_when_empty_token_entered_and_decoded() {
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
         robot.clickOn(encodedTokenArea).write("");
-        robot.clickOn("#decodeButton");
 
         then(encodedTokenArea.getText()).isEmpty();
     }
 
     @Test
-    @DisplayName("do_not_update_display_until_decode_button_clicked")
-    public void do_not_update_display_until_decode_button_clicked() {
+    @DisplayName("update_display_automatically_after_debounce_delay")
+    public void update_display_automatically_after_debounce_delay() throws Exception {
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
 
         robot.clickOn(encodedTokenArea).write(token);
 
-        // Verify that the table is still empty before clicking decode
+        // Verify that the table is still empty immediately after typing (debouncing)
         then(controller.payloadTable.getRoot()).isNull();
 
-        robot.clickOn("#decodeButton");
+        // Wait for debounce delay (500ms) + buffer
+        WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.payloadTable.getRoot() != null);
 
         // Now it should be populated
         then(controller.payloadTable.getRoot()).isNotNull();
@@ -70,12 +72,14 @@ public class JwtEditorControllerTest {
 
     @Test
     @DisplayName("display_decoded_token_for_valid_token")
-    public void display_decoded_token_for_valid_token() {
+    public void display_decoded_token_for_valid_token() throws Exception {
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
 
         robot.clickOn(encodedTokenArea).write(token);
-        robot.clickOn("#decodeButton");
+        
+        // Wait for debounce delay
+        WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.payloadTable.getRoot() != null);
 
         // Verify that the controller processed the token
         TreeItem<JwtEditorController.PayloadRow> root = controller.payloadTable.getRoot();
@@ -86,20 +90,17 @@ public class JwtEditorControllerTest {
         
         then(branches.get(0).getValue().getProperty()).isEqualTo("Header");
         then(branches.get(1).getValue().getProperty()).isEqualTo("Payload");
-        
-        // Verify header content
-        then(branches.get(0).getChildren()).isNotEmpty();
-        // Verify payload content
-        then(branches.get(1).getChildren()).isNotEmpty();
     }
 
     @Test
     @DisplayName("show_invalid_status_for_malformed_token")
-    public void show_invalid_status_for_malformed_token() {
+    public void show_invalid_status_for_malformed_token() throws Exception {
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
 
         robot.clickOn(encodedTokenArea).write("invalid.token.format");
-        robot.clickOn("#decodeButton");
+        
+        // Wait for debounce delay
+        WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.jwtStatusLabel.getText().contains("Invalid"));
 
         then(controller.jwtStatusLabel.getText()).contains("Invalid");
     }

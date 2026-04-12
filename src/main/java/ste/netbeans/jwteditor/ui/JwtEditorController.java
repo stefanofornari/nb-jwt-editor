@@ -2,10 +2,11 @@ package ste.netbeans.jwteditor.ui;
 
 import ste.netbeans.jwteditor.service.JwtDecoderService;
 import ste.netbeans.jwteditor.service.JwtVerificationService;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TreeItem;
@@ -13,14 +14,15 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.util.Duration;
 import java.util.logging.Logger;
 
 public class JwtEditorController {
 
     final private Logger LOG = Logger.getLogger(getClass().getName());
+    private static final int DEBOUNCE_DELAY_MS = 500;
 
     @FXML private TextArea encodedTokenArea;
-    @FXML private Button decodeButton;
     @FXML TreeTableView<PayloadRow> payloadTable;
     @FXML private TreeTableColumn<PayloadRow, String> propertyColumn;
     @FXML private TreeTableColumn<PayloadRow, String> valueColumn;
@@ -32,6 +34,7 @@ public class JwtEditorController {
 
     private final JwtDecoderService decoderService = new JwtDecoderService();
     private final JwtVerificationService verificationService = new JwtVerificationService();
+    private Timeline debounceTimeline;
 
     @FXML
     public void initialize() {
@@ -44,12 +47,20 @@ public class JwtEditorController {
         // Use a hidden root
         payloadTable.setShowRoot(false);
 
+        // Setup debouncing timeline
+        debounceTimeline = new Timeline(new KeyFrame(Duration.millis(DEBOUNCE_DELAY_MS), e -> updateDisplay()));
+        debounceTimeline.setCycleCount(1);
+
+        // Setup reactive listeners
+        encodedTokenArea.textProperty().addListener((obs, oldVal, newVal) -> triggerUpdate());
+        secretField.textProperty().addListener((obs, oldVal, newVal) -> triggerUpdate());
+
         updateDisplay();
     }
 
-    @FXML
-    private void handleDecodeAction() {
-        updateDisplay();
+    private void triggerUpdate() {
+        debounceTimeline.stop();
+        debounceTimeline.playFromStart();
     }
 
     private void updateDisplay() {
@@ -101,14 +112,11 @@ public class JwtEditorController {
         boolean secretValid = verificationService.isSecretValid(secret);
         if (!secret.isEmpty()) {
             if (secretValid) {
-                secretValidationLabel.setText("✓ Secret is valid (≥32 bytes)");
+                secretValidationLabel.setText("✓ Secret is provided");
                 secretValidationLabel.setStyle("-fx-text-fill: #388e3c;");
-            } else {
-                secretValidationLabel.setText("✗ Secret too short (min 32 bytes)");
-                secretValidationLabel.setStyle("-fx-text-fill: #d32f2f;");
             }
         } else {
-            secretValidationLabel.setText("Secret requirement: At least 32 bytes");
+            secretValidationLabel.setText("Secret is required for signature verification");
             secretValidationLabel.setStyle("-fx-text-fill: #888888;");
         }
 
@@ -131,7 +139,7 @@ public class JwtEditorController {
 
     private void clearDisplay() {
         payloadTable.setRoot(null);
-        secretValidationLabel.setText("Secret requirement: At least 32 bytes");
+        secretValidationLabel.setText("Secret is required for signature verification");
         secretValidationLabel.setStyle("-fx-text-fill: #888888;");
         jwtStatusLabel.setText("Status: Ready");
         jwtStatusLabel.setStyle("-fx-text-fill: #666666;");
