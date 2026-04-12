@@ -4,7 +4,7 @@
 
     <groupId>com.github.stefanofornari</groupId>
     <artifactId>nb-jwt-editor</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
+    <version>0.0.0</version>
     <packaging>nbm</packaging>
 
     <name>JWT Editor</name>
