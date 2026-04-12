@@ -32,8 +32,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/stefanofornari/nb-jwt-editor.git</connection>
-        <developerConnection>scm:git:ssh://github.com:stefanofornari/nb-jwt-editor.git</developerConnection>
+        <connection>scm:git:git@github.com:stefanofornari/nb-jwt-editor.git</connection>
         <url>https://github.com/stefanofornari/nb-jwt-editor/tree/main</url>
     </scm>
 
