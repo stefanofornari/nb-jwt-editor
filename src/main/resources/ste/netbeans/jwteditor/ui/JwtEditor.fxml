@@ -35,11 +35,14 @@
                             <Label text="Decoded Token" styleClass="caption" HBox.hgrow="ALWAYS"/>
                         </HBox>
                         <TreeTableView fx:id="payloadTable" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TreeTableColumn fx:id="propertyColumn" text="Property" prefWidth="150.0"/>
-                                <TreeTableColumn fx:id="valueColumn" text="Value" prefWidth="250.0"/>
-                            </columns>
-                        </TreeTableView>
+                        <columnResizePolicy>
+                            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN" />
+                        </columnResizePolicy>
+                        <columns>
+                            <TreeTableColumn fx:id="propertyColumn" text="Property" prefWidth="150.0" maxWidth="150.0"/>
+                            <TreeTableColumn fx:id="valueColumn" text="Value"/>
+                        </columns>
+                    </TreeTableView>
                     </VBox>
 
                     <!-- Secret Key & Verification -->

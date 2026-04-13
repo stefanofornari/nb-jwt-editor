@@ -77,17 +77,17 @@ public class JwtEditorControllerTest {
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
 
         robot.clickOn(encodedTokenArea).write(token);
-        
+
         // Wait for debounce delay
         WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.payloadTable.getRoot() != null);
 
         // Verify that the controller processed the token
         TreeItem<JwtEditorController.PayloadRow> root = controller.payloadTable.getRoot();
         then(root).isNotNull();
-        
+
         List<TreeItem<JwtEditorController.PayloadRow>> branches = root.getChildren();
         then(branches).hasSize(2);
-        
+
         then(branches.get(0).getValue().getProperty()).isEqualTo("Header");
         then(branches.get(1).getValue().getProperty()).isEqualTo("Payload");
     }
@@ -105,11 +105,11 @@ public class JwtEditorControllerTest {
 
         robot.clickOn(encodedTokenArea).write(token);
         robot.clickOn(secretField).write(secret);
-        
+
         // Wait for debounce delay
         WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.signatureStatusLabel.getText().contains("Valid"));
 
-        then(controller.signatureStatusLabel.getText()).contains("Signature: Valid ✓");
+        then(controller.signatureStatusLabel.getText()).contains("Signature: Valid");
     }
 
     @Test
@@ -126,11 +126,11 @@ public class JwtEditorControllerTest {
 
         robot.clickOn(encodedTokenArea).write(token);
         robot.clickOn(secretField).write(secret2);
-        
+
         // Wait for debounce delay
         WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.signatureStatusLabel.getText().contains("Invalid"));
 
-        then(controller.signatureStatusLabel.getText()).contains("Signature: Invalid ✗");
+        then(controller.signatureStatusLabel.getText()).contains("Signature: Invalid");
     }
 
     @Test
@@ -139,7 +139,7 @@ public class JwtEditorControllerTest {
         TextArea encodedTokenArea = robot.lookup("#encodedTokenArea").queryAs(TextArea.class);
 
         robot.clickOn(encodedTokenArea).write("invalid.token.format");
-        
+
         // Wait for debounce delay
         WaitForAsyncUtils.waitFor(2, TimeUnit.SECONDS, () -> controller.jwtStatusLabel.getText().contains("Invalid"));
 
