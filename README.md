@@ -37,7 +37,7 @@ mvnd clean install
 ## How to Use
 
 1. Open NetBeans IDE
-2. Go to **Windows → JWT Editor**
+2. Go to **Tools → JWT Editor**
 3. Paste your JWT token in the "Encoded Token" field
 4. The plugin automatically:
    - Displays the decoded header and payload claims in tree-table
