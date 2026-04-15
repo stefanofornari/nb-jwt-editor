@@ -29,7 +29,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <netbeans.version>RELEASE290</netbeans.version>
+        <netbeans.version>RELEASE280</netbeans.version>
         <javafx.version>21.0.2</javafx.version>
     </properties>
 
