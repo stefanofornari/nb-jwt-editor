@@ -1,5 +1,6 @@
 title: NetBeans JWT Editor
 description: A powerful JWT editor and viewer plugin for NetBeans IDE.
+repository: stefanofornari/nb-jwt-editor
 theme: jekyll-theme-hacker
 show_downloads: true
 google_analytics:
