@@ -4,6 +4,8 @@ A NetBeans IDE plugin for viewing and verifying JWT (JSON Web Token) tokens with
 
 Built with JavaFX to provide a modern and responsive user interface within the NetBeans ecosystem.
 
+[Download .nbm](https://github.com/stefanofornari/nb-jwt-editor/releases/latest) {: .btn}
+
 ## Features
 
 - **Real-time JWT Decoding**: Automatically decodes JWT tokens as you paste or type them.
