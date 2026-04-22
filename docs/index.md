@@ -30,8 +30,6 @@ Built with JavaFX to provide a modern and responsive user interface within the N
    - Select **JWT Editor**
    - Click **Install** and follow the wizard.
 
-<img src="images/jfxerror.png" alt="JavaFX Not Available" style="margin-right: 10px; margin-bottom: 10px"/>
-
 Note that NetBeans does not allow to intall the plgin if JavaFX is not available.
 If you run in the message below, see teh section **JavaFX Installation**.
 
