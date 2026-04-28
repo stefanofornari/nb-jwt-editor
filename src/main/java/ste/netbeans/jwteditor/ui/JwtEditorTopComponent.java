@@ -7,59 +7,54 @@ import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 
-
 @TopComponent.Description(
         preferredID = JwtEditorTopComponent.PREFERRED_ID,
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS,
+        persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
         iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
 )
 @TopComponent.Registration(mode = "output", openAtStartup = false)
-@ActionID(category = "Tools", id = JwtEditorTopComponent.PREFERRED_ID)
-@ActionReference(path = "Menu/Tools", position = 900)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_JwtEditorAction",
-        preferredID = JwtEditorTopComponent.PREFERRED_ID
-)
 @NbBundle.Messages({
-    "CTL_JwtEditorAction=JWT Editor",
     "CTL_JwtEditorTopComponent=JWT Editor",
     "HINT_JwtEditorTopComponent=JWT Editor"
 })
 public class JwtEditorTopComponent extends TopComponent {
     public static final String PREFERRED_ID = "ste-netbeans-jwteditor-JWTEditorTopComponent";
-
-
+    
+    private int instanceNumber;
+    
     final private Logger LOG = Logger.getLogger(getClass().getName());
-
+    
     public JwtEditorTopComponent() {
         LOG.info(">>> JwtEditorTopComponent");
-        setName(Bundle.CTL_JwtEditorTopComponent());
-        setDisplayName(Bundle.CTL_JwtEditorTopComponent());
-        setToolTipText(Bundle.HINT_JwtEditorTopComponent());
     }
-
+    
     @Override
     protected void componentOpened() {
         LOG.info(">>> JwtEditorTopComponent.componentOpened");
         super.componentOpened();
-        if (getComponentCount() == 0) {
-            initializeUI();
-        }
+        
+        // Get the current number of open JWT Editors
+        instanceNumber = getComponentCount()+1;
+        
+        // Update the title with the instance number
+        setName(Bundle.CTL_JwtEditorTopComponent() + " " + instanceNumber);
+        setDisplayName(Bundle.CTL_JwtEditorTopComponent() + " " + instanceNumber);
+        setToolTipText(Bundle.HINT_JwtEditorTopComponent());
+        
+        initializeUI();
     }
-
+    
     private void initializeUI() {
         LOG.info(">>> JwtEditorTopComponent.initializeUI");
         setLayout(new BorderLayout());
         try {
             JFXPanel fxPanel = new JFXPanel();
             add(fxPanel, BorderLayout.CENTER);
-
+            
             // Load FXML on JavaFX thread
             javafx.application.Platform.runLater(() -> {
                 try {
