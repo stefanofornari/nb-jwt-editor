@@ -10,21 +10,24 @@ import javafx.scene.Scene;
 import org.openide.windows.TopComponent;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
+import org.openide.windows.WindowManager;
+import static ste.lloop.Loop.on;
 
 @TopComponent.Description(
         preferredID = JwtEditorTopComponent.PREFERRED_ID,
         persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
         iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
 )
-@TopComponent.Registration(mode = "output", openAtStartup = false)
+@TopComponent.Registration(
+    mode = "output", 
+    openAtStartup = false
+)
 @NbBundle.Messages({
     "CTL_JwtEditorTopComponent=JWT Editor",
     "HINT_JwtEditorTopComponent=JWT Editor"
 })
 public class JwtEditorTopComponent extends TopComponent {
     public static final String PREFERRED_ID = "ste-netbeans-jwteditor-JWTEditorTopComponent";
-    
-    private int instanceNumber;
     
     final private Logger LOG = Logger.getLogger(getClass().getName());
     
@@ -35,15 +38,29 @@ public class JwtEditorTopComponent extends TopComponent {
     @Override
     protected void componentOpened() {
         LOG.info(">>> JwtEditorTopComponent.componentOpened");
+        
         super.componentOpened();
         
-        // Get the current number of open JWT Editors
-        instanceNumber = getComponentCount()+1;
-        
-        // Update the title with the instance number
-        setName(Bundle.CTL_JwtEditorTopComponent() + " " + instanceNumber);
-        setDisplayName(Bundle.CTL_JwtEditorTopComponent() + " " + instanceNumber);
-        setToolTipText(Bundle.HINT_JwtEditorTopComponent());
+        // Count how many instances of THIS class are currently open in the Window System
+        final int[] count = new int[] { 0 };
+        try {
+            on(WindowManager.getDefault().getModes()).loop(mode -> {
+                on(mode.getTopComponents()).loop(tc -> {
+                    if (tc instanceof JwtEditorTopComponent) {
+                        ++count[0];
+                    }
+                });
+            });
+
+            // Set names based on that count
+            --count[0];
+            final String title = Bundle.CTL_JwtEditorTopComponent() + ((count[0] > 1) ? (" " + count[0]) : "");
+
+            this.setName(title);
+            this.setDisplayName(title);
+        } catch (Throwable t) {
+            Exceptions.printStackTrace(t);
+        }
         
         initializeUI();
     }

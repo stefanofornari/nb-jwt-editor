@@ -34,6 +34,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.stefanofornari</groupId>
+            <artifactId>lambda-loop</artifactId>
+            <version>0.6.1</version>
+        </dependency>
         <!-- NetBeans -->
         <dependency>
             <groupId>org.netbeans.api</groupId>

@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
+import org.openide.windows.Mode;
+import org.openide.windows.WindowManager;
 
 /**
  *
@@ -35,6 +37,12 @@ public class OpenJwtEditorAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JwtEditorTopComponent tc = new JwtEditorTopComponent();
+
+        Mode outputMode = WindowManager.getDefault().findMode("output");
+        if (outputMode != null) {
+            outputMode.dockInto(tc);
+        }
+
         tc.open();
         tc.requestActive();
     }    
