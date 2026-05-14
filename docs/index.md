@@ -15,12 +15,11 @@ Built with JavaFX to provide a modern and responsive user interface within the N
 
 ### Requirements
 
-- **NetBeans IDE**: Version 28 or later is recommended.
-- **Java**: JDK 21 or later.
-- **JavaFX**: The plugin bundles the required JavaFX libraries, but ensure your
-  JDK/JRE supports JavaFX or that NetBeans is configured to run on a JDK that
-  includes it or install the NetBeans module **JavaFX Implementation** for your
-  platform.
+- **NetBeans IDE**: Version 18 or later is recommended.
+- **Java**: JDK 11 or later.
+- **JavaFX Toolkit for NetBeans**: The plugin requires the library module [JavaFX
+  Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+   available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131)
 
 ### NetBans Portal Installation
 
@@ -30,10 +29,8 @@ Built with JavaFX to provide a modern and responsive user interface within the N
    - Select **JWT Editor**
    - Click **Install** and follow the wizard.
 
-Note that NetBeans does not allow to intall the plgin if JavaFX is not available.
-If you run in the message below, see teh section **JavaFX Installation**.
-
-<img src="images/jfxerror.png" alt="JavaFX Not Available" style="margin-right: 10px; margin-bottom: 10px"/>
+Note that NetBeans does not allow to intall the plgin if JavaFX Toolkit for NetBeans
+is not available. See secion **JavaFX Toolkit for NetBeans Installation**.
 
 ### Step-by-Step Installation
 
@@ -69,19 +66,12 @@ Once installed, you can access the JWT Editor:
 5. To verify a signature, enter the secret in the **JWT Signature Verification** field.
 
 ## JavaFX Installation
-JWT Edito requires JavaFX to be available in NetBeans. If you use a JDK that bundles
-JavaFX, you are all set: JavaFX will be available and you can install the plugin.
+The plugin requires the library module [JavaFX Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131).
 
-If not, you will see the message mentioned above. In such case you have two choices:
-
-1. Install and run NetBeans with a JDK that bundles JavaFX. Well knonw JDKs with
-   JavaFX are:
-   - [Azul JDK](https://www.azul.com/downloads)
-   - [Liberica JDK by bellsoft](https://bell-sw.com/pages/downloads)
-2. Activate the JavaFX Implementation for Windows/Linux/Macos directly in the
-   plugin manager; after that, you can install **JWT Editor** with the above instructions.
-
-<img src="images/jfximplementation.png" alt="JavaFX Implementation Module" style="margin-right: 10px; margin-bottom: 10px"/>
+To install the JavaFX Toolkit go to **Tools** &rarr; **Plugins**, click on
+Available Plugins and search for module JavaFX Toolkit for Netbeans; select and
+install it.
 
 ---
 **License**: Apache 2.0
