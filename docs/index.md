@@ -18,8 +18,8 @@ Built with JavaFX to provide a modern and responsive user interface within the N
 
 - **NetBeans IDE**: Version 18 or later is recommended.
 - **Java**: JDK 11 or later.
-- **JavaFX Toolkit for Netbeans**: The plugin requires the library module [JavaFX
-  Toolkit for Netbeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+- **JavaFX Toolkit for NetBeans**: The plugin requires the library module [JavaFX
+  Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
    available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131)
 
 ### Step-by-Step Installation

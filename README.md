@@ -35,7 +35,7 @@ mvnd clean install
 - **assertj**: BDD-style assertions
 
 Please note that the plugin requires the library module [JavaFX
-Toolkit for Netbeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
 available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131),
 which must be installed before installing/activating nb-jwt-editor.
 
