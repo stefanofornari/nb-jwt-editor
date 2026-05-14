@@ -18,10 +18,15 @@ Built with JavaFX to provide a modern and responsive user interface within the N
 
 - **NetBeans IDE**: Version 18 or later is recommended.
 - **Java**: JDK 11 or later.
-- **JavaFX**: The plugin bundles the required JavaFX libraries, but ensure your JDK/JRE supports JavaFX or that NetBeans is configured to run on a JDK that includes it.
+- **JavaFX Toolkit for Netbeans**: The plugin requires the library module [JavaFX
+  Toolkit for Netbeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+   available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131)
 
 ### Step-by-Step Installation
 
+0. **Install JavaFX Toolkit for Netbeans**: Go to **Tools** &rarr; **Plugins**,
+   click on Available Plugins and search for module JavaFX Toolkit for Netbeans;
+   select and install it.
 1. **Download the NBM**: Obtain the latest `.nbm` file from the [releases](https://github.com/stefanofornari/nb-jwt-editor/releases) page.
 2. **Open NetBeans**: Launch your NetBeans IDE.
 3. **Plugins Manager**: Go to **Tools** &rarr; **Plugins**.
@@ -55,5 +60,5 @@ mvn clean package
 The resulting `.nbm` file will be in the `target` directory.
 
 ---
-**License**: Apache 2.0  
+**License**: Apache 2.0
 **Author**: Stefano Fornari

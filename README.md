@@ -29,10 +29,15 @@ mvnd clean install
 ## Main Dependencies
 
 - **java-jwt** (4.4.0): JWT encoding/decoding library
-- **javafx**: JavaFX controls and FXML support
+- **nb-javafx-toolkit**: JavaFX Toolkit for Netbeans
 - **json**: JSON parsing and formatting
 - **testfx**: JavaFX UI testing
 - **assertj**: BDD-style assertions
+
+Please note that the plugin requires the library module [JavaFX
+Toolkit for Netbeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
+available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131),
+which must be installed before installing/activating nb-jwt-editor.
 
 ## How to Use
 
