@@ -92,11 +92,6 @@
         </dependency>
         <!-- JavaFX -->
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-netbeans-libs-javafx</artifactId>
-            <version>${netbeans.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.stefanofornari</groupId>
             <artifactId>nb-javafx-toolkit</artifactId>
             <version>0.0.2</version>
