@@ -26,13 +26,18 @@ import org.openide.windows.WindowManager;
 /**
  *
  */
-@ActionID(category = "Tools", id = "ste.netbeans.jwteditor.ui.OpenJwtEditor")
-@ActionReference(path = "Menu/Tools", position = 900)
+@ActionID(
+    category = "Tools", 
+    id = "ste.netbeans.jwteditor.ui.OpenJwtEditor"
+)
+@ActionReference(
+    path = "Menu/Tools", 
+    position = 900
+)
 @ActionRegistration(
     displayName = "#CTL_JwtEditorAction",
     iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
 )
-
 public class OpenJwtEditorAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {

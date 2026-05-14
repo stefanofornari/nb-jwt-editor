@@ -97,19 +97,9 @@
             <version>${netbeans.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>${javafx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-swing</artifactId>
-            <version>${javafx.version}</version>
+            <groupId>com.github.stefanofornari</groupId>
+            <artifactId>nb-javafx-toolkit</artifactId>
+            <version>0.0.2</version>
         </dependency>
 
         <!-- JWT -->
@@ -199,6 +189,12 @@
                     <publicPackages>
                         <publicPackage>ste.netbeans.jwteditor</publicPackage>
                     </publicPackages>
+                    <moduleDependencies>
+                        <dependency>
+                        <id>com.github.stefanofornari:nb-javafx-toolkit</id>
+                        <type>impl</type>
+                        </dependency>
+                    </moduleDependencies>
                     <useOSGiDependencies>false</useOSGiDependencies>
                 </configuration>
             </plugin>

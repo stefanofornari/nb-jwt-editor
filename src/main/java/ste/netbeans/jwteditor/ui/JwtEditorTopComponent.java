@@ -14,9 +14,9 @@ import org.openide.windows.WindowManager;
 import static ste.lloop.Loop.on;
 
 @TopComponent.Description(
-        preferredID = JwtEditorTopComponent.PREFERRED_ID,
-        persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
-        iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
+    preferredID = JwtEditorTopComponent.PREFERRED_ID,
+    persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
+    iconBase = "ste/netbeans/jwteditor/logo-16x16.png"
 )
 @TopComponent.Registration(
     mode = "output", 
@@ -46,15 +46,18 @@ public class JwtEditorTopComponent extends TopComponent {
         try {
             on(WindowManager.getDefault().getModes()).loop(mode -> {
                 on(mode.getTopComponents()).loop(tc -> {
-                    if (tc instanceof JwtEditorTopComponent) {
+                    if (tc instanceof JwtEditorTopComponent && tc != this && tc.isOpened()) {
                         ++count[0];
+                        LOG.info("Found other OPENED JwtEditorTopComponent instance: " + tc.getDisplayName() + " (hash: " + tc.hashCode() + ")");
                     }
                 });
             });
 
+            count[0]++; // add ourselves
+            LOG.info("Final count for this instance: " + count[0]);
+
             // Set names based on that count
-            --count[0];
-            final String title = Bundle.CTL_JwtEditorTopComponent() + ((count[0] > 1) ? (" " + count[0]) : "");
+            final String title = formatTitle(NbBundle.getMessage(JwtEditorTopComponent.class, "CTL_JwtEditorTopComponent"), count[0]);
 
             this.setName(title);
             this.setDisplayName(title);
@@ -63,6 +66,10 @@ public class JwtEditorTopComponent extends TopComponent {
         }
         
         initializeUI();
+    }
+    
+    static String formatTitle(String baseName, int index) {
+        return index + ". " + baseName;
     }
     
     private void initializeUI() {
