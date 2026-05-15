@@ -65,7 +65,7 @@ Once installed, you can access the JWT Editor:
 4. The **Header** and **Payload** sections will update instantly.
 5. To verify a signature, enter the secret in the **JWT Signature Verification** field.
 
-## JavaFX Installation
+## How to install JavaFX Toolkit for NetBeans
 The plugin requires the library module [JavaFX Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
 available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131).
 
