@@ -67,11 +67,11 @@ Once installed, you can access the JWT Editor:
 
 ## How to install JavaFX Toolkit for NetBeans
 The plugin requires the library module [JavaFX Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
-available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131).
-
-To install the JavaFX Toolkit go to **Tools** &rarr; **Plugins**, click on
-Available Plugins and search for module JavaFX Toolkit for Netbeans; select and
-install it.
+(available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131))
+If you install JWT Editor from the portal, the dependency will be installed as well if needed.
+Otherwise, you may need to manually install the toolkit before JWT Editor: go to
+**Tools** &rarr; **Plugins**, click on Available Plugins and search for module
+JavaFX Toolkit for Netbeans; select and install it.
 
 ---
 **License**: Apache 2.0
