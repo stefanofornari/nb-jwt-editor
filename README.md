@@ -36,8 +36,10 @@ mvnd clean install
 
 Please note that the plugin requires the library module [JavaFX
 Toolkit for NetBeans](https://stefanofornari.github.io/nb-javafx-toolkit/)
-available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131),
-which must be installed before installing/activating nb-jwt-editor.
+(available on [Plugin Portal](https://plugins.netbeans.apache.org/catalogue/?id=131)).
+If you install JWT Editor from the portal, the dependency will be installed as
+well if needed. Otherwise, you may need to manually install the toolkit before
+JWT Editor.
 
 ## How to Use
 
